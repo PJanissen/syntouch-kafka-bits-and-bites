@@ -1,4 +1,16 @@
+
 # Virtual Box Image
+<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+
+- [Virtual Box Image](#virtual-box-image)
+	- [Systeemvereisten](#systeemvereisten)
+	- [Importeren](#importeren)
+		- [Post-import taken](#post-import-taken)
+	- [VBox starten](#vbox-starten)
+	- [Belangrijke gegevens](#belangrijke-gegevens)
+		- [Login gegevens](#login-gegevens)
+
+<!-- /TOC -->
 Het Virtual Box image is gemaakt voor VirtualBox 6.0.10 of hoger; VirtualBox kan voor jouw OS gedownload worden op de [Virtual Box](https://www.virtualbox.org/wiki/Downloads) site
 
 ## Systeemvereisten
@@ -48,3 +60,14 @@ Gebruikersnaam | Wachtwoord
 ---------------|------------
 kafka          | kafka
 root           | wortel
+
+## Terminal
+Op dit VirtualBox image zijn verschillende terminals geïnstalleerd:
+- Konsole: dit is de standaard terminal van CentOS
+- Terminator: dit is een terminal multiplexer, hier kun je in hetzelfde venster verschillende terminal sessies actief hebben en horizontaal en/of verticaal splitsen. Voor beide programma's is een snelkoppeling op de desktop geplaatst, let op dat je hierop maar één keer hoeft te klikken ...
+
+### Terminator
+Als je het context venster boven een terminator window activeert (rechter muisknop), dan wordt een menu getoond waarmee je je huidige venster kunt splitsen:
+![Terminator context-menu](../assets/Terminator-context-menu.png)
+Je kunt de venster horizontaal en verticaal splitsen en aanpassen qua grootte:
+![Terminator vensters](../assets/Terminator-split-windows.png)
