@@ -4,7 +4,8 @@ Naast Apache Kafka zijn er ook andere projecten die gebruik maken van Zookeeper,
 Meer informatie op de website van [Apache Zookeeper](https://zookeeper.apache.org/).
 
 ## Zookeeper cluster
-Een Zookeeper cluster wordt gevormd door één of meer Zookeeper servers; in onze workshop zullen we slechts een Zookeeper instance gebruiken.
+Een Zookeeper cluster wordt gevormd door één of meer Zookeeper servers; in onze workshop zullen we slechts één Zookeeper instance gebruiken.
+
 ![Zookeeper Cluster](../assets/ZookeeperService.jpeg)
 
 Hetzelfde Zookeeper cluster kan worden gebruikt om meerdere Kafka cluster tegelijkertijd te draaien, maar niet voor productie-doeleinden.
@@ -22,7 +23,7 @@ Type bestand             | Locatie
 -------------------------|-------------
 Configuratie-bestanden:  | /opt/kafka/config
 Zookeeper databestanden: | /opt/data
-Kafka server logs        | /opt/kafka/logs/_\<servername\>\*
+Kafka server logs        | /opt/kafka/logs/\<servername\>\*
 
 \* Hier moet (later) je per broker een directory aanmaken
 
@@ -45,4 +46,15 @@ Sla je configuratiebestand op en verlaat je editor. De confluent distributie van
 Je kunt je Zookeeper server starten met het script zookeeper-server-start en als argument opgeven welke configuratiefile moet worden gebruikt, dus:
 ```bash
 /opt/confluent/bin/zookeeper-server-start  /opt/kafka/config/zookeeper.properties
+```
+
+#### Zookeer status
+Met behulp van de zookeeper shell (of good-old telnet) kun je de zookeeper instance controleren en monitoren. Hiervoor geef je als argument hostname:portnummer op, waarbij je hostname kunt weglaten als het de lokale server betreft. Maak connectie naar je zookeeper server met:
+```bash
+/opt/confluent/bin/zookeeper-shell :2181
+```
+
+Als je succesvol connectie hebt gemaakt, dan kun je met help de commando's opvragen. Zo kun je vanuit de shell controleren hoeveel clients er verbonden zijn met de root namespace door:
+```bash
+stat /
 ```
