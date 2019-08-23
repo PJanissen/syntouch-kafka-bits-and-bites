@@ -48,7 +48,7 @@ Je kunt je Zookeeper server starten met het script zookeeper-server-start en als
 /opt/confluent/bin/zookeeper-server-start  /opt/kafka/config/zookeeper.properties
 ```
 
-#### Zookeer status
+#### Zookeeper status
 Met behulp van de zookeeper shell (of good-old telnet) kun je de zookeeper instance controleren en monitoren. Hiervoor geef je als argument hostname:portnummer op, waarbij je hostname kunt weglaten als het de lokale server betreft. Maak connectie naar je zookeeper server met:
 ```bash
 /opt/confluent/bin/zookeeper-shell :2181
