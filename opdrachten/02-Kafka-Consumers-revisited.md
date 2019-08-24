@@ -25,3 +25,8 @@ Wat is het geval: het standaard gedrag van de consumer is dat deze alleen berich
 Gelukkig meldt de kafka-console-consumer zich iedere keer met een _nieuwe_ identificatie aan, dus als je de consumer stopt, dan kun je 'm hierna herstarten met een extra optie: --from-beginning.
 
 Als je even geduld hebt, dan zul je alle berichten voorbij zien komen, maar deze berichten zijn __niet helemaal__ in dezelfde volgorde waarin zij zijn aangeboden aan Kafka.
+
+Stop de consumer en producer met \<CTRL\>-C, stop de kafka-brokers netjes met het broker stop script:
+```
+/opt/confluent/bin/kafka-server-stop <pad-naar-het-configuratie-bestand>
+```
