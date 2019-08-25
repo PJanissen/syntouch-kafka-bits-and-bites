@@ -1,3 +1,12 @@
+<!-- TOC -->
+
+- [Herding Cats](#herding-cats)
+  - [Zookeeper cluster](#zookeeper-cluster)
+  - [Configuratie](#configuratie)
+    - [Zookeeper configuratie](#zookeeper-configuratie)
+      - [Zookeeper status](#zookeeper-status)
+
+<!-- /TOC -->
 # Herding Cats
 Zookeeper wordt gebruikt om de verschillende servers/taken binnen het Kafka-cluster te coördineren, zoals configuratiebeheer en verkiezingen. Zonder Zookeeper kun je geen Kafka-cluster starten noch draaien, dus normaliter wordt Zookeeper ook uitgevoerd (zoals zovele componenten binnen het Kafka ecosysteem) als cluster met een aantal nodes.
 Naast Apache Kafka zijn er ook andere projecten die gebruik maken van Zookeeper, zoals bijvoorbeeld Neo4J, Hadoop, Mesos etc.
@@ -41,17 +50,17 @@ dataDir=/opt/data
 clientPort=2181
 ```
 
-Sla je configuratiebestand op en verlaat je editor. De confluent distributie van Kafka bevat een aantal scripts om componenten te starten en stoppen; deze zijn ondergebracht onder /opt/confluent/bin/.
+Sla je configuratiebestand op en verlaat je editor. De confluent distributie van Kafka bevat een aantal scripts om componenten te starten en stoppen; deze zijn ondergebracht onder /opt/confluent/bin/ en staan al in je zoekpad ($PATH).
 
 Je kunt je Zookeeper server starten met het script zookeeper-server-start en als argument opgeven welke configuratiefile moet worden gebruikt, dus:
 ```bash
-/opt/confluent/bin/zookeeper-server-start  /opt/kafka/config/zookeeper.properties
+zookeeper-server-start  /opt/kafka/config/zookeeper.properties
 ```
 
 #### Zookeeper status
 Met behulp van de zookeeper shell (of good-old telnet) kun je de zookeeper instance controleren en monitoren. Hiervoor geef je als argument hostname:portnummer op, waarbij je hostname kunt weglaten als het de lokale server betreft. Maak connectie naar je zookeeper server met:
 ```bash
-/opt/confluent/bin/zookeeper-shell :2181
+zookeeper-shell :2181
 ```
 
 Als je succesvol connectie hebt gemaakt, dan kun je met help de commando's opvragen. Zo kun je vanuit de shell controleren hoeveel clients er verbonden zijn met de root namespace door:

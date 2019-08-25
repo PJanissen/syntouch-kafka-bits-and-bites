@@ -1,3 +1,14 @@
+<!-- TOC -->
+
+- [Starten Kafka brokers](#starten-kafka-brokers)
+  - [Inrichten Kafka brokers](#inrichten-kafka-brokers)
+  - [Let's get the party started!](#lets-get-the-party-started)
+  - [Off-topic?](#off-topic)
+    - [On-topic](#on-topic)
+    - [Calling Kafka](#calling-kafka)
+    - [Calling Kafka .. again](#calling-kafka--again)
+
+<!-- /TOC -->
 # Starten Kafka brokers
 Zookeeper zelf doet niet meer dan de coördinatie over het Kafka-cluster, dus dat wil zeggen taken als het houden van verkiezingen m.b.t. het leiderschap voor een bepaalde partitie en het bijhouden van de beschikbaarheid van de leden van het cluster, dat zijn de servers die Kafka draaien (de Kafka brokers).
 
@@ -43,7 +54,7 @@ Binnen kafka kun je in het algemeen de hostname achterwege laten wanneer het de 
 ## Let's get the party started!
 Laten we de kafka servers gaan starten om aan de slag te gaan. Open een terminator venster en splitst dat in twee delen, hier moet je verschillende kafka brokers starten. Hiervoor is een script kafka-server-start meegeleverd in /opt/confluent/bin waaraan je de naam van he configuratiebestand als argument meegeeft (start het script nu niet zonder argument want dan wordt het standaard configuratiebestand gebruikt - en niet ons eigen configuratiebestand):
 ```bash
-/opt/confluent/bin/kafka-server-start /opt/kafka/config/server-1.properties
+kafka-server-start /opt/kafka/config/server-1.properties
 ```
 (_En m.m. hetzelfde commando voor de tweede kafka broker_)
 
@@ -81,11 +92,11 @@ In ieder geval is duidelijk dat we inderdaad een topic hebben aangemaakt met 8 p
 Hoe krijgen we berichten gepubliceerd op een Kafka topic? Voor dit moment is het het eenvoudigste om met behulp van een script de berichten te publiceren.
 Kafka levert een kafka-console-producer script mee waarmee je berichten kunt publiceren.
 
-Op een terminator venster en start het script /opt/confluent/bin/kafka-console-producer zonder argumenten: dit levert de informatie die je nodig hebt om het script te kunnen gebruiken door de __REQUIRED__ argumenten op de commandoregel toe te voegen met de juiste waarden.
+Op een terminator venster en start het script kafka-console-producer zonder argumenten: dit levert de informatie die je nodig hebt om het script te kunnen gebruiken door de __REQUIRED__ argumenten op de commandoregel toe te voegen met de juiste waarden.
 Voer het commando dus nogmaals uit, maar nu met de juiste argumenten en schakelopties. Als je dit goed doet, dan krijg je een simpele prompt (>). Hierachter kun je een bericht ingeven en bij het afsluiten met \<ENTER\> wordt gepubliceerd op het opgegeven topic.
 Publiceer twee berichten op het topic vanuit de producer.
 
-### Calling Kafka
+### Calling Kafka .. again
 - [X] Zookeeper Cluster
 - [X] Kafka Cluster
 - [X] Topic my-first-topic

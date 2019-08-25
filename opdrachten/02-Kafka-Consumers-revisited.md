@@ -1,3 +1,8 @@
+<!-- TOC -->
+
+- [Foutje, bedankt!](#foutje-bedankt)
+
+<!-- /TOC -->
 # Foutje, bedankt!
 
 De foutmelding geeft al veel van het probleem (én de oplossing) weg:
@@ -28,5 +33,5 @@ Als je even geduld hebt, dan zul je alle berichten voorbij zien komen, maar deze
 
 Stop de consumer en producer met \<CTRL\>-C, stop de kafka-brokers netjes met het broker stop script:
 ```
-/opt/confluent/bin/kafka-server-stop <pad-naar-het-configuratie-bestand>
+kafka-server-stop <pad-naar-het-configuratie-bestand>
 ```

@@ -1,16 +1,19 @@
-
-# Virtual Box Image
-<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+<!-- TOC -->
 
 - [Virtual Box Image](#virtual-box-image)
-	- [Systeemvereisten](#systeemvereisten)
-	- [Importeren](#importeren)
-		- [Post-import taken](#post-import-taken)
-	- [VBox starten](#vbox-starten)
-	- [Belangrijke gegevens](#belangrijke-gegevens)
-		- [Login gegevens](#login-gegevens)
+  - [Systeemvereisten](#systeemvereisten)
+  - [Importeren](#importeren)
+    - [Post-import taken](#post-import-taken)
+  - [VBox starten](#vbox-starten)
+  - [Belangrijke gegevens](#belangrijke-gegevens)
+    - [Login gegevens](#login-gegevens)
+  - [Terminal](#terminal)
+    - [Terminator](#terminator)
+  - [Notities](#notities)
 
 <!-- /TOC -->
+# Virtual Box Image
+
 Het Virtual Box image is gemaakt voor VirtualBox 6.0.10 of hoger; VirtualBox kan voor jouw OS gedownload worden op de [Virtual Box](https://www.virtualbox.org/wiki/Downloads) site
 
 ## Systeemvereisten
@@ -71,3 +74,9 @@ Als je het context venster boven een terminator window activeert (rechter muiskn
 ![Terminator context-menu](../assets/Terminator-context-menu.png)
 Je kunt de venster horizontaal en verticaal splitsen en aanpassen qua grootte:
 ![Terminator vensters](../assets/Terminator-split-windows.png)
+
+Tip: je kunt verschillende tabs openen in terminator, maar hoe weet je nu wat er achter welke tab verstopt zit? Als je dubbelklikt op de tab, dan kun je je de tabs eenvoudig voorzien van een titel!
+![Tabbed Terminator](../assets/TabTitles.png)
+
+## Notities
+De directory /opt/confluent/bin is toegevoegd aan het standaard zoekpad, je kunt de Kafka scripts dus zonder pad-locatie direct uitvoeren!
