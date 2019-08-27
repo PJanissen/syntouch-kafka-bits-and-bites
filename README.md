@@ -22,3 +22,7 @@ De tijden in het ondervermelde programma zijn onder voorbehoud: hieraan kunnen g
 Vóórdat je aan de slag gaat, moet je de [beschrijving van de Virtual Box](virtualbox/VirtualBox.md) even doorlezen; hierin staat naast irrelevante informatie ook informatie die je nodig hebt om in te kunnen loggen ...
 
 0. [Herding Cats](opdrachten/00-Herding-Cats.md) - Zookeeper
+1. [Kafka Brokers](opdrachten/01-Kafka-Brokers.md) - Firing up a Kafka cluster
+2. [Kafka Consumers](opdrachten/02-Kafka-Consumers-revisited.md)
+3. [Order, order!](opdrachten/03-Order,order.md) - partitions and ordering
+4. [Scaling](opdrachten/04-Rebalancing.md) -Upscaling, mostly.
