@@ -75,11 +75,11 @@ kafka-topics --bootstrap-server :9092,:9093 --create --topic my-first-topic --pa
 Als je geen foutmelding ziet, dan is het goed gegaan ... maar dat kunnen we beter even zelf controleren!
 Met dezelfde tool kun je opvragen welke topics er allemaal bestaan op je cluster. Uiteraard hoef je hiervoor geen replication-factor, partitions of topic-name op te geven en in plaats van de actie _create_ wordt de actie nu _list_:
 
-![Topics uitlijsten](../assets/kafka-listing-topics.png)
+![Topics uitlijsten](../assets/Kafka-listing-topics.png)
 
 Dit geeft niet veel informatie over het topic, maar gelukkig hebben we ook nog de describe actie:
 
-![Topics uitlijsten](../assets/kafka-describing-topics.png)
+![Topics uitlijsten](../assets/Kafka-describing-topics.png)
 Wat zie je hier nu precies?
 In ieder geval is duidelijk dat we inderdaad een topic hebben aangemaakt met 8 partities en een replicatie-factor van 2, d.w.z. van iedere partitie is één kopie. Per partitie wordt vermeld wat de primaire kopie is ("Leader"), waar de replica's staan en of de replica's "bij" zijn (Isr = In-sync-replica): berichten die naar de primaire kopie worden verstuurd worden gesynchroniseerd naar de replica's.
 
