@@ -1,14 +1,3 @@
-<!-- TOC -->
-
-- [Starten Kafka brokers](#starten-kafka-brokers)
-  - [Inrichten Kafka brokers](#inrichten-kafka-brokers)
-  - [Let's get the party started!](#lets-get-the-party-started)
-  - [Off-topic?](#off-topic)
-    - [On-topic](#on-topic)
-    - [Calling Kafka](#calling-kafka)
-    - [Calling Kafka .. again](#calling-kafka--again)
-
-<!-- /TOC -->
 # Starten Kafka brokers
 Zookeeper zelf doet niet meer dan de coördinatie over het Kafka-cluster, dus dat wil zeggen taken als het houden van verkiezingen m.b.t. het leiderschap voor een bepaalde partitie en het bijhouden van de beschikbaarheid van de leden van het cluster, dat zijn de servers die Kafka draaien (de Kafka brokers).
 

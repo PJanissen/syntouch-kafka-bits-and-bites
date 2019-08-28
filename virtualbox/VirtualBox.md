@@ -1,17 +1,3 @@
-<!-- TOC -->
-
-- [Virtual Box Image](#virtual-box-image)
-  - [Systeemvereisten](#systeemvereisten)
-  - [Importeren](#importeren)
-    - [Post-import taken](#post-import-taken)
-  - [VBox starten](#vbox-starten)
-  - [Belangrijke gegevens](#belangrijke-gegevens)
-    - [Login gegevens](#login-gegevens)
-  - [Terminal](#terminal)
-    - [Terminator](#terminator)
-  - [Notities](#notities)
-
-<!-- /TOC -->
 # Virtual Box Image
 
 Het Virtual Box image is gemaakt voor VirtualBox 6.0.10 of hoger; VirtualBox kan voor jouw OS gedownload worden op de [Virtual Box](https://www.virtualbox.org/wiki/Downloads) site

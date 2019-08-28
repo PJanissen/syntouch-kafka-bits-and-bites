@@ -1,8 +1,3 @@
-<!-- TOC -->
-
-- [Foutje, bedankt!](#foutje-bedankt)
-
-<!-- /TOC -->
 # Foutje, bedankt!
 
 De foutmelding geeft al veel van het probleem (én de oplossing) weg:

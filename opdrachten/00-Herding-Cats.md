@@ -1,12 +1,3 @@
-<!-- TOC -->
-
-- [Herding Cats](#herding-cats)
-  - [Zookeeper cluster](#zookeeper-cluster)
-  - [Configuratie](#configuratie)
-    - [Zookeeper configuratie](#zookeeper-configuratie)
-      - [Zookeeper status](#zookeeper-status)
-
-<!-- /TOC -->
 # Herding Cats
 Zookeeper wordt gebruikt om de verschillende servers/taken binnen het Kafka-cluster te coördineren, zoals configuratiebeheer en verkiezingen. Zonder Zookeeper kun je geen Kafka-cluster starten noch draaien, dus normaliter wordt Zookeeper ook uitgevoerd (zoals zovele componenten binnen het Kafka ecosysteem) als cluster met een aantal nodes.
 Naast Apache Kafka zijn er ook andere projecten die gebruik maken van Zookeeper, zoals bijvoorbeeld Neo4J, Hadoop, Mesos etc.

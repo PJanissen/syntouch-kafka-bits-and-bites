@@ -1,18 +1,3 @@
-!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
-
-- [John Bercow rules!](#john-bercow-rules)
-	- [Hoe te partitioneren?](#hoe-te-partitioneren)
-	- [Keyed topic](#keyed-topic)
-		- [Keyed publish](#keyed-publish)
-			- [Message to Kafka](#message-to-kafka)
-		- [Consumers](#consumers)
-			- [United consumers](#united-consumers)
-				- [Consumer groups](#consumer-groups)
-		- [Divide & Conquer](#divide-conquer)
-			- [Rebalancing consumers](#rebalancing-consumers)
-		- [SYS 64738 - reset the offsets](#sys-64738-reset-the-offsets)
-
-<!-- /TOC -->
 # John Bercow rules!
 (John Bercow is de voorzitter van het Britse Lagerhuis, bekend vanwege zijn "Order, order!". Zelfs zijn kat heet naar verluidt [Order](https://nos.nl/artikel/2267757-lagerhuis-voorzitter-nu-zelf-beroemdheid-zelfs-zijn-kat-heet-order.html)...).
 
