@@ -24,5 +24,7 @@ Vóórdat je aan de slag gaat, moet je de [beschrijving van de Virtual Box](virt
 0. [Herding Cats](opdrachten/00-Herding-Cats.md) - Zookeeper
 1. [Kafka Brokers](opdrachten/01-Kafka-Brokers.md) - Firing up a Kafka cluster
 2. [Kafka Consumers](opdrachten/02-Kafka-Consumers-revisited.md)
-3. [Order, order!](opdrachten/03-Order,order.md) - partitions and ordering
+3. [Order, order!](opdrachten/03-Order,order.md) - Partitions and ordering
 4. [Scaling](opdrachten/04-Rebalancing.md) -Upscaling, mostly.
+5. [Compressing](opdrachten\05-No-space-left-on-device.md) - Compressing topics
+6. [Kafka Clients & Producters](opdrachten\06-Programming-Kafka.md)

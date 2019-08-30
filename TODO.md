@@ -17,3 +17,6 @@ cp ./etc/kafka/zookeeper.properties ./config
 
 mkdir -p /opt/logs/server-{1,2,3}
 /opt/confluent/bin/zookeeper-server-start /opt/confluent/config/zookeeper.properties
+
+Git repo uitchecken!
+code/message-generator.sh uitvoerbaar maken
