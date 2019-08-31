@@ -1,0 +1,17 @@
+create stream countries_stream (
+  country_name      VARCHAR,
+  country_code      VARCHAR,
+  continent         VARCHAR,
+  capital           VARCHAR,
+  population        INTEGER,
+  area              INTEGER,
+  coastline         INTEGER,
+  government        VARCHAR,
+  currency          VARCHAR,
+  currency_code     VARCHAR,
+  phone_prefix      VARCHAR,
+  birthrate         DOUBLE,
+  deathrate         DOUBLE,
+  life_expectancy   DOUBLE,
+  url               VARCHAR
+) WITH (KAFKA_TOPIC='COUNTRIES', VALUE_FORMAT='DELIMITED');

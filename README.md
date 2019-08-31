@@ -26,5 +26,6 @@ Vóórdat je aan de slag gaat, moet je de [beschrijving van de Virtual Box](virt
 2. [Kafka Consumers](opdrachten/02-Kafka-Consumers-revisited.md)
 3. [Order, order!](opdrachten/03-Order,order.md) - Partitions and ordering
 4. [Scaling](opdrachten/04-Rebalancing.md) -Upscaling, mostly.
-5. [Compressing](opdrachten\05-No-space-left-on-device.md) - Compressing topics
-6. [Kafka Clients & Producters](opdrachten\06-Programming-Kafka.md)
+5. [Compressing](opdrachten/05-No-space-left-on-device.md) - Compressing topics
+6. [Kafka Clients & Producters](opdrachten/06-Programming-Kafka.md) - Work in progress ...
+7. [Kafka Streams](opdrachten/07-Streaming-data.md) - Event Streams &  KSQL
