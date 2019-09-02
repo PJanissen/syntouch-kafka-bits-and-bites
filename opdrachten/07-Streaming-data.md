@@ -47,7 +47,7 @@ Het toevoegen van een _limit_ biedt hier uitkomst om eenvoudig een sectie van de
 `print COUNTRIES from beginning limit 20;`
 
 ### Streams of data
-Laten we een stream definieren op de data in dit topic; zie het commando in [<GitHub_REPO>data/countries-format.txt](data/countries-format.txt) om een stream te declareren in KSQL.
+Laten we een stream definieren op de data in dit topic; zie het commando in [<GitHub_REPO>data/countries-format.txt](../data/countries-format.txt) om een stream te declareren in KSQL.
 
 Maak de  countries_stream aan met het commando.
 
