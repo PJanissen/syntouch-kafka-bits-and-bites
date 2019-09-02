@@ -1,0 +1,5 @@
+SELECT continent
+,      COUNT(*)
+,      SUM(population)
+FROM   countries_stream
+GROUP BY continent;

@@ -20,7 +20,7 @@ Start een browser sessie naar port 9021 op je lokale machine; selecteer vervolge
 ![Control Center](../assets/CCC-Create-topic.png)
 
 Maak vervolgens een nieuw topic COUNTRIES aan met één partitie; de replicatiefactor is nu per definitie  1, want het confluent cluster is lokaal in ontwikkelmodus gestart.
-In de folder 'data' in de Git repository is een data file aangeleverd waarin een countries.csv file aanwezig is. Laadt deze in je nieuw aangemaakte topic door de inhoud van de file naar de kafka-console-producer te cat'ten in het nieuwe aangemaakte topic, de broker draait op de standaard poort 9092.
+In de folder 'data' in de Git repository is een data file aangeleverd waarin een countries.csv file aanwezig is. Laadt deze in je nieuw aangemaakte topic door de inhoud van de file naar de kafka-console-producer te cat'ten in het nieuwe aangemaakte topic, de broker draait op de standaard poort 9092 ([zo dus ongeveer ...](code\load-countries-csv-to-kafka.sh)).
 
 ## KSQL, here we come!
 Start hierna een KSQL client op om streams te kunnen manipuleren; start een terminal venster naar keuze en voer `ksql` uit.
@@ -47,7 +47,7 @@ Het toevoegen van een _limit_ biedt hier uitkomst om eenvoudig een sectie van de
 `print COUNTRIES from beginning limit 20;`
 
 ### Streams of data
-Laten we een stream definieren op de data in dit topic; zie het commando in [data/countries-format.txt](data/countries-format.txt) om een stream te declareren in KSQL.
+Laten we een stream definieren op de data in dit topic; zie het commando in [<GitHub_REPO>data/countries-format.txt](data/countries-format.txt) om een stream te declareren in KSQL.
 
 Maak de  countries_stream aan met het commando.
 
@@ -55,4 +55,75 @@ Mmm, KSQL klinkt als SQL ... laten we eens proberen om een SELECT op de stream u
 `SELECT * FROM countries_stream;`
 
 Helaas, pindakaas. Weer hetzelfde probleem als met de andere opdrachten. Dit probleem is (voor de huidige sessie) in een keer op te lossen door:
-`SET 'auto.offset.rest'='earliest';` uit te voeren op de KSQL prompt!
+`SET 'auto.offset.reset'='earliest';` uit te voeren op de KSQL prompt!
+
+### Streams or tables?
+Brouw een query om per continent de naam van het continent, het aantal landen en de totale populatie per continent te bepalen (_tip: KSQL is niet voor niets de naam, het is net SQL ..._ Mocht je er niet uitkomen, kijk dan [hier](../code/ksql-landen-populatie-per-continent.ksql))
+
+Laat deze query maar draaien in KSQL, maar stuur ondertussen de data nogmaals door Kafka heen ... Let op de resultaten in KSQL.
+
+Je ziet dat de totalen nu verdubbelen ... Kafka Streams neemt simpelweg alle data in beschouwing, de resultaten worden bijgewerkt en getoond zodra er verandering optreedt. Nu is het mogelijk om gebruik te maken van WINDOW clausules waarmee tijdsvenster worden gedefinieerd, maar dat is niet altijd een oplossing - zeker niet hier.
+Log compaction is ook onbetrouwbaar in deze, omdat dit garandeert dat er per sleutel __minimaal__ de meest recente waarde overbijft (en daarvoor moet je op het Kafka topic een SLEUTEL meeleveren).
+
+Gelukkig is er een alternatief, KTables. Dit is een Kafka tabel, waarbij iedere sleutel slechts één keer voorkomt. Laten we een tabel definiëren op het bestaande topic:
+```
+create table first_countries_table (
+  country_name      VARCHAR,
+  country_code      VARCHAR,
+  continent         VARCHAR,
+  capital           VARCHAR,
+  population        INTEGER,
+  area              INTEGER,
+  coastline         INTEGER,
+  government        VARCHAR,
+  currency          VARCHAR,
+  currency_code     VARCHAR,
+  phone_prefix      VARCHAR,
+  birthrate         DOUBLE,
+  deathrate         DOUBLE,
+  life_expectancy   DOUBLE,
+  url               VARCHAR
+) WITH (KAFKA_TOPIC='COUNTRIES', VALUE_FORMAT='DELIMITED',KEY='country_code');
+```
+
+Kun je hieruit resultaten zien als je een zoekvraag stelt op deze tabel?
+
+#### Geen data?!
+Helaas, op deze manier is het NIET mogelijk om data op te vragen ... Waarom dat is, kun je [hier](https://stackoverflow.com/questions/49057102/ksql-table-not-showing-data-but-stream-with-same-structure-returning-data) nalezen.
+
+De eenvoudigste manier om dit nu op te lossen, is om de data opnieuw aan te bieden op een (ander) topic en om te sleutelen zodat er een KEY wordt aangeleverd. Laten we shell scripten ...
+
+```bash
+cat countries.csv \
+  | awk 'FS="," { print $2"#"$1","$3","$4","$5","$6","$7","$8","$9","$10","$11","$12","$13","$14","$15 }' \
+  | kafka-console-producer --topic COUNTRIES2 --broker-list :9092 --property "parse.key=true" --property "key.separator=#"
+```  
+Wat gebeurt er hier? De eerste regel leest het bestand uit, de tweede regel herschikt de velden (veld 2, de landcode wordt als eerste veld gebruikt en wordt van de rest gescheiden door een #, de achterliggende datavelden worden gescheiden door een komma, zoals daarvoor).
+De laatste regel verstuurt de omgekatte regel tenslotte naar de Kafka producer, waarbij een sleutel en een message worden aangeleverd, gescheiden door een hekje.
+Het bericht zelf (dat de komma's bevat) wordt nu ook weer eenvoudigweg als een tekststring weggeschreve ...
+
+Definieer vervolgens een Kafka table op het nieuw aangemaakte topic (standaard staan de topics op autocreate, dus die hoef je niet van te voren aan te maken ...):
+```
+create table countries2_table (
+  country_name      VARCHAR,
+  continent         VARCHAR,
+  capital           VARCHAR,
+  population        INTEGER,
+  area              INTEGER,
+  coastline         INTEGER,
+  government        VARCHAR,
+  currency          VARCHAR,
+  currency_code     VARCHAR,
+  phone_prefix      VARCHAR,
+  birthrate         DOUBLE,
+  deathrate         DOUBLE,
+  life_expectancy   DOUBLE,
+  url               VARCHAR
+) WITH (KAFKA_TOPIC='COUNTRIES2', VALUE_FORMAT='DELIMITED');
+```
+Omdat het TOPIC al was gedefinieerd met een KEY, wordt de tabel automatisch ook met dezelfde key aangemaakt.
+
+Voer nu de aggregatie query uit op de nieuwe __Kafka tabel__, d.w.z. tel het aantal landen en de totale populate per continent - _laat de query draaien_ !
+Als de resultaten worden getoond, open dan een tweede venster en biedt daarin __nogmaals__ de data aan zoals je dat de laatste keer hebt gedaan, dus met sleutel.
+
+Als het goed is, dan moet je nu kunnen vaststellen dat de aggregaties opnieuw worden berekend, want er is nieuwe data het topic (en dus de stream) ingegaan. De totalen (landen, inwoners) zijn nu echter *niet* veranderd!
