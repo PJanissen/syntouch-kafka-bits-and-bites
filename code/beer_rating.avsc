@@ -1,0 +1,60 @@
+{
+        "namespace": "streams",
+        "name": "beer_ratings_v1",
+        "type": "record",
+        "fields": [
+                {"name": "beer_time", "type": {
+                    "type": "long",
+                    "format_as_time" : "unix_long",
+                    "arg.properties": {
+                    "regex": "15[4-6][0-9]{7}"
+                    }
+                }},
+                {"name": "beer_rating_id", "type": {
+                    "type": "long",
+                    "arg.properties": {
+                        "range": { "min" : 1}
+                    }
+                }},
+              {"name": "userid", "type": {
+                    "type": "string",
+                    "arg.properties": {
+                      "options": [
+                        "haantje",
+                        "dadario",
+                        "allesklarherrkommisar",
+                        "mnuman",
+                        "sjonnie_j",
+                        "roosjee_pee_es_vee"
+                      ]
+                    }
+                }},
+                {"name": "beer_id", "type": {
+                    "type": "string",
+                    "arg.properties": {
+                        "options": [
+                          "MOOSE",
+                          "HOP",
+                          "IJWIT",
+                          "WITTEROOK",
+                          "HOUTGERIJPTEDOPPELBOCK",
+                          "PLATINUMBLOND",
+                          "MOOIENEL",
+                          "PALEALECITRA",
+                          "UP",
+                          "F*CKCARAVAN",
+                          "WEIZENDOPPELBOCK",
+                          "OAKEDQUAD",
+                          "BAHVARIA"
+                        ]
+                    }
+                }},
+                {"name": "rating", "type": {
+                    "type": "int",
+                    "arg.properties": {
+                        "range": { "min" : 10, "max": 100}
+                    }
+                }}
+
+        ]
+}

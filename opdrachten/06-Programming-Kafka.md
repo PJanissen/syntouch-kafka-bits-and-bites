@@ -5,3 +5,8 @@ Alhoewel Java misschien de meest voor de hand liggende programmeertaal is om int
 - het kan (er is een Python library voor Kafka)
 - Python een script taal is (dus je hoeft niets te compileren of bouwen)
 - Python erg hip en elegant is
+
+## Kafka Producers & Consumers
+Een Kafka Producer is een Kafka client die berichten produceert, de berichten worden gelezen door Kafka clients die consumers heten. Je kunt eenvoudig een Kafka client schrijven in Python. Ik heb geen tijd meer om zelf een voorbeeld uit te werken, maar als je aan de slag wilt gaan met Python (staat geïnstalleerd op je VM, inclusief de benodigde library) dan vind je hier de voorbeelden:
+- [Kafka Producer](https://github.com/confluentinc/confluent-kafka-python/blob/master/examples/producer.py)
+- [Kafka Consumer](https://github.com/confluentinc/confluent-kafka-python/blob/master/examples/consumer.py)
