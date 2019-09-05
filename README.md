@@ -29,3 +29,4 @@ Vóórdat je aan de slag gaat, moet je de [beschrijving van de Virtual Box](virt
 5. [Compressing](opdrachten/05-No-space-left-on-device.md) - Compressing topics
 6. [Kafka Clients & Producters](opdrachten/06-Programming-Kafka.md) - Work in progress ...
 7. [Kafka Streams](opdrachten/07-Streaming-data.md) - Event Streams &  KSQL
+8. [Nirvana = Beer Streams](opdrachten/08-Streams-as-in-beer.md) - No comment

@@ -51,35 +51,43 @@ Als je in het onderstaand voorbeeld kijkt, dan zie je dat Kafka (KSQL) het forma
 ### BEERSTREAM
 Als we een streaming query willen definieren op deze ratings, dan kunnen we eenvoudig het volgende commando uitvoeren (Kafka/Schema definieert per slot van rekening al de structuur):
 ```
-CREATE STREAM BIERSCORESTREAM WITH ( KAFKA_TOPIC='BEERSCORES', VALUE_FORMAT='AVRO');
+CREATE STREAM BEERSCORESTREAM WITH ( KAFKA_TOPIC='BEERSCORES', VALUE_FORMAT='AVRO');
 ```
-Controleer dat je van deze nieuw aangemaakte Kafka stream kunt lezen door eeb query uit te voeren tegen de stream (`select * from BIERSCORESTREAM limit 2`).
+Controleer dat je van deze nieuw aangemaakte Kafka stream kunt lezen door eeb query uit te voeren tegen de stream (`select * from BEERSCORESTREAM limit 2`).
 
 Bekijk de structuur die KSQL voor je stream heeft gedefinieerd door een `describe` uit te voeren op je stream, _vergeet de afsluitende puntkomma niet_!
 
 Je kunt binnen KSQL ook allerlei functies aanroepen (het lijkt écht net SQL), zoals bijvoorbeeld functies om een timestamp (BIGINT) te converteren naar een leesbare datum/tijd:
 ```
 select timestamptostring(beer_time, 'dd-MM-YYYY HH:mm:ss.SSS')
-from   bierscorestream limit 10;
+from   BEERSCORESTREAM limit 10;
 ```
 
 ### Loading Beers
-Er is een bestandje gemaakt met de "bierdefinities", d.w.z. een tekstbestandje als:
-```csv
-IJWIT;IJwit,IJ,WIBIER,6.5,0.33
-WITTEROOK;Witte Rook,JOPEN,SMOKED,7.0,0.25
+Er is een bestandje gemaakt met de "bierdefinities", d.w.z. een bestand met
+```JSON
+MOOSE#{ "CODE" : "MOOSE", "NAME" : "Moose On The Loose","BREWER" : "UILTJE", "BEERTYPE" : "NEIPA","ABV": 6.0,"VOLUME" : 0.44}
+HOP#{ "CODE" : "HOP", "NAME" : "Hop Zij Met Ons","BREWER" : "JOPEN", "BEERTYPE" : "IPA","ABV": 6.0,"VOLUME" : 0.30}
 ...
 ```
 Het formaat is:
-CODE;Naam,Brouwer,Soort,ABV,inhoud
-CODE is de unieke sleutel, ABV is het aantal volume-procenten alcohol, de inhoud is in liters.
+CODE#JSON-MESSAGE.
+Het JSON bericht bestaat uit een code (als de message key), naam van het bier, brouwer, volumeprocenten alcohol en volume (uiteraard in SI eenheden, dus liters ...).
+
+_Krijg je een foutmelding over de 'LEADER_NOT_AVAILABLE', dan was het topic nog niet volledig klaar ... Herhaal dan de laad-opdracht, dan wordt de data nogmaals aangeboden. Omdat we straks een tabel op unieke sleutel aanmaken, zie je uiteindelijk iedere entry maar één keer._
+
+** Wil je deze foutmelding voorkomen, maak dan het topic aan vóórdat je gaat laden ** (maar lazy loading is eenvoudiger :-)
 
 ```bash
-cat /pad-naar-git-repofiles/data/beers.txt | \
-  kafka-console-producer --property "parse.key=true" \ 
-    --property "key.separator=;" --broker-list :9092 --topic BEERS
+cat /pad-naar-git-repofiles/data/beers.json | \
+  kafka-console-producer --property "parse.key=true" \
+    --property "key.separator=#" --broker-list :9092 --topic BEERS
 ```
 
-Na het laden van deze data in het topic "BEERS", willen we hier nog een referentietabel van maken (zodat iedere code slechts een keer voorkomt):
+Na het laden van deze data in het topic "BEERS", willen we hier een referentietabel van maken (zodat iedere key (=code) slechts een keer voorkomt).
+Dat doe je door het commando in [code/beers_table_from_beers_stream.ksql](../code/beers_table_from_beers_stream.ksql) uit te voeren binnen KSQL, uiteraard **nadat** je de data hebt geladen ...
 
-CREATE TABLE BEERS_TABLE (CODE VARCHAR, NAME VARCHAR, BREWER VARCHAR, BEERTYPE VARCHAR, ABV DOUBLE, VOLUME DOUBLE) WITH (KAFKA_TOPIC=BEERS,VALUE_FORMAT=DELIMITED,KEY=CODE);
+
+Query ideeën:
+------------
+Stream definieren
