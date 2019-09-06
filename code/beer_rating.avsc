@@ -16,7 +16,7 @@
                         "range": { "min" : 1}
                     }
                 }},
-              {"name": "userid", "type": {
+              {"name": "user_id", "type": {
                     "type": "string",
                     "arg.properties": {
                       "options": [

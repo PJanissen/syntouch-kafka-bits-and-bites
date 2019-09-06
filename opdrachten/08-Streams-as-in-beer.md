@@ -66,13 +66,13 @@ from   BEERSCORESTREAM limit 10;
 ### Loading Beers
 Er is een bestandje gemaakt met de "bierdefinities", d.w.z. een bestand met
 ```JSON
-MOOSE#{ "CODE" : "MOOSE", "NAME" : "Moose On The Loose","BREWER" : "UILTJE", "BEERTYPE" : "NEIPA","ABV": 6.0,"VOLUME" : 0.44}
-HOP#{ "CODE" : "HOP", "NAME" : "Hop Zij Met Ons","BREWER" : "JOPEN", "BEERTYPE" : "IPA","ABV": 6.0,"VOLUME" : 0.30}
+MOOSE#{ "ID" : "MOOSE", "NAME" : "Moose On The Loose","BREWER" : "UILTJE", "BEERTYPE" : "NEIPA","ABV": 6.0,"VOLUME" : 0.44}
+HOP#{ "ID" : "HOP", "NAME" : "Hop Zij Met Ons","BREWER" : "JOPEN", "BEERTYPE" : "IPA","ABV": 6.0,"VOLUME" : 0.30}
 ...
 ```
 Het formaat is:
-CODE#JSON-MESSAGE.
-Het JSON bericht bestaat uit een code (als de message key), naam van het bier, brouwer, volumeprocenten alcohol en volume (uiteraard in SI eenheden, dus liters ...).
+KEY#JSON-MESSAGE.
+Het JSON bericht bestaat uit een ID (=message key), naam van het bier, brouwer, volumeprocenten alcohol en volume (uiteraard in SI eenheden, dus liters ...).
 
 _Krijg je een foutmelding over de 'LEADER_NOT_AVAILABLE', dan was het topic nog niet volledig klaar ... Herhaal dan de laad-opdracht, dan wordt de data nogmaals aangeboden. Omdat we straks een tabel op unieke sleutel aanmaken, zie je uiteindelijk iedere entry maar één keer._
 
@@ -84,7 +84,7 @@ cat /pad-naar-git-repofiles/data/beers.json | \
     --property "key.separator=#" --broker-list :9092 --topic BEERS
 ```
 
-Na het laden van deze data in het topic "BEERS", willen we hier een referentietabel van maken (zodat iedere key (=code) slechts een keer voorkomt).
+Na het laden van deze data in het topic "BEERS", willen we hier een referentietabel van maken (zodat iedere key=ID slechts een keer voorkomt).
 Dat doe je door het commando in [code/beers_table_from_beers_stream.ksql](../code/beers_table_from_beers_stream.ksql) uit te voeren binnen KSQL, uiteraard **nadat** je de data hebt geladen ...
 
 
