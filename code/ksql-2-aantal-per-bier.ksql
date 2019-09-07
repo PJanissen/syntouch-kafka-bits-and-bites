@@ -1,0 +1,5 @@
+SELECT beer_id
+,      COUNT(*)
+FROM   beerscorestream
+GROUP BY beer_id
+;

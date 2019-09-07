@@ -1,0 +1,5 @@
+SELECT bsc.user_id, round(sum(b.volume*b.abv/100))
+FROM   BEERSCORESTREAM bsc
+LEFT JOIN BEERS b on bsc.beer_id = b.id
+GROUP BY bsc.user_id
+;

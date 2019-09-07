@@ -1,0 +1,5 @@
+SELECT b.beertype, round(sum(b.volume))
+FROM   BEERSCORESTREAM bsc
+LEFT JOIN BEERS b on bsc.beer_id = b.id
+GROUP BY b.beertype
+;

@@ -19,7 +19,7 @@ Vervolgens kun je de opgeslagen OVA (Virtual Box Appliance) importeren:
 ![](../assets/Importeren_VirtualBox_Appliance.png)
 
 ### Post-import taken
-Je kunt het aantal processoren dat je aan je VirtualBox image toekent bijstellen door op het de VBox te selecteren en het context menu (Windows: rechter muisknop) te gebruiken; hier kies je in het menu "Instellingen":
+Je kunt de hoeveelheid geheugen (8 GB) en het aantal processoren (1) dat je aan je VirtualBox image toekent bijstellen door op het de VBox te selecteren en het context menu (Windows: rechter muisknop) te gebruiken; hier kies je in het menu "Instellingen":
 
 ![](../assets/VBoxInstellingen.png)
 

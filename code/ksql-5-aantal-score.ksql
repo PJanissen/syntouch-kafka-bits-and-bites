@@ -1,0 +1,6 @@
+SELECT beer_id
+,      COUNT(*)
+,      SUM(rating)/SUM(1)
+FROM   beerscorestream
+GROUP BY beer_id
+;

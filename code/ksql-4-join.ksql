@@ -1,0 +1,4 @@
+SELECT *
+FROM   BEERSCORESTREAM bsc
+LEFT JOIN BEERS b on bsc.beer_id = b.id
+;

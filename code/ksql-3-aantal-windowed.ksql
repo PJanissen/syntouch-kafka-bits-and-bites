@@ -1,0 +1,6 @@
+SELECT beer_id
+,      COUNT(*)
+FROM   beerscorestream
+WINDOW TUMBLING (SIZE 60 SECONDS)
+GROUP BY beer_id
+;
