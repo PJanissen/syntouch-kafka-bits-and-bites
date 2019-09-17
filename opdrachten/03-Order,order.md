@@ -1,5 +1,5 @@
 # John Bercow rules!
-(John Bercow is de voorzitter van het Britse Lagerhuis, bekend vanwege zijn "Order, order!". Zelfs zijn kat heet naar verluidt [Order](https://nos.nl/artikel/2267757-lagerhuis-voorzitter-nu-zelf-beroemdheid-zelfs-zijn-kat-heet-order.html)...).
+(John Bercow was de voorzitter van het Britse Lagerhuis, bekend vanwege zijn "Order, order!". Zelfs zijn kat heet naar verluidt [Order](https://nos.nl/artikel/2267757-lagerhuis-voorzitter-nu-zelf-beroemdheid-zelfs-zijn-kat-heet-order.html)...).
 
 In ieder geval heb je net gemerkt dat Kafka toch wel verschilt van een reguliere message queue, zo is er geen echte volgorde gedefinieerd.
 Het enige wat Kafka garandeert is dat berichten in dezelfde partitie geordend zijn, maar niet over de partities heen.
